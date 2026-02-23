@@ -30,9 +30,9 @@ export default function Home() {
   }, [tasks]);
 
   const columns = [
-    { id: "todo" as const, title: "To Do", icon: ListTodo, color: "text-slate-500", bg: "bg-slate-500/10", border: "border-slate-200" },
-    { id: "in_progress" as const, title: "In Progress", icon: Layers, color: "text-blue-500", bg: "bg-blue-500/10", border: "border-blue-200" },
-    { id: "done" as const, title: "Done", icon: CheckSquare, color: "text-emerald-500", bg: "bg-emerald-500/10", border: "border-emerald-200" },
+    { id: "todo" as const, title: "À faire", icon: ListTodo, color: "text-slate-500", bg: "bg-slate-500/10", border: "border-slate-200" },
+    { id: "in_progress" as const, title: "En cours", icon: Layers, color: "text-blue-500", bg: "bg-blue-500/10", border: "border-blue-200" },
+    { id: "done" as const, title: "Terminé", icon: CheckSquare, color: "text-emerald-500", bg: "bg-emerald-500/10", border: "border-emerald-200" },
   ];
 
   if (error) {
@@ -59,10 +59,10 @@ export default function Home() {
       >
         <div>
           <h1 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-foreground">
-            Task <span className="text-primary">Manager</span>
+            Gestionnaire de <span className="text-primary">Tâches</span>
           </h1>
           <p className="text-muted-foreground mt-2 text-lg">
-            Stay organized, focused, and get things done.
+            TP de Gestion de Projet - Travail Étudiant
           </p>
         </div>
         
@@ -71,7 +71,7 @@ export default function Home() {
           className="rounded-xl px-6 py-6 h-auto text-base font-semibold shadow-lg shadow-primary/20 hover:shadow-xl hover:-translate-y-0.5 transition-all bg-gradient-to-r from-primary to-primary/90"
         >
           <Plus className="mr-2 w-5 h-5" />
-          New Task
+          Nouvelle Tâche
         </Button>
       </motion.header>
 
@@ -123,7 +123,7 @@ export default function Home() {
                       animate={{ opacity: 1 }}
                       className="h-32 flex flex-col items-center justify-center text-center p-4 border-2 border-dashed border-border/50 rounded-2xl"
                     >
-                      <p className="text-muted-foreground text-sm font-medium">No tasks here</p>
+                      <p className="text-muted-foreground text-sm font-medium">Aucune tâche ici</p>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -135,7 +135,7 @@ export default function Home() {
                   onClick={() => openForm(null, column.id)}
                 >
                   <Plus className="mr-2 w-4 h-4" />
-                  Add to {column.title}
+                  Ajouter à {column.title}
                 </Button>
               </div>
             </motion.div>

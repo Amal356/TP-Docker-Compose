@@ -32,21 +32,21 @@ export function TaskCard({ task, onEdit }: TaskCardProps) {
 
   const statusConfig = {
     todo: { 
-      label: "To Do", 
+      label: "À faire", 
       icon: Circle, 
       color: "text-slate-500", 
       bg: "bg-slate-100 dark:bg-slate-800",
       border: "border-slate-200 dark:border-slate-700" 
     },
     in_progress: { 
-      label: "In Progress", 
+      label: "En cours", 
       icon: Clock, 
       color: "text-blue-500", 
       bg: "bg-blue-50 dark:bg-blue-900/30",
       border: "border-blue-200 dark:border-blue-800" 
     },
     done: { 
-      label: "Done", 
+      label: "Terminé", 
       icon: CheckCircle2, 
       color: "text-emerald-500", 
       bg: "bg-emerald-50 dark:bg-emerald-900/30",
@@ -111,28 +111,28 @@ export function TaskCard({ task, onEdit }: TaskCardProps) {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-[200px] rounded-xl">
                 <DropdownMenuItem onClick={() => onEdit(task)} className="rounded-lg cursor-pointer">
-                  <Edit2 className="mr-2 h-4 w-4" /> Edit
+                  <Edit2 className="mr-2 h-4 w-4" /> Modifier
                 </DropdownMenuItem>
                 
                 <DropdownMenuSeparator />
                 
                 <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                  Move to
+                  Déplacer vers
                 </div>
                 
                 {task.status !== "todo" && (
                   <DropdownMenuItem onClick={() => handleStatusChange("todo")} className="rounded-lg cursor-pointer">
-                    <Circle className="mr-2 h-4 w-4 text-slate-500" /> To Do
+                    <Circle className="mr-2 h-4 w-4 text-slate-500" /> À faire
                   </DropdownMenuItem>
                 )}
                 {task.status !== "in_progress" && (
                   <DropdownMenuItem onClick={() => handleStatusChange("in_progress")} className="rounded-lg cursor-pointer">
-                    <Clock className="mr-2 h-4 w-4 text-blue-500" /> In Progress
+                    <Clock className="mr-2 h-4 w-4 text-blue-500" /> En cours
                   </DropdownMenuItem>
                 )}
                 {task.status !== "done" && (
                   <DropdownMenuItem onClick={() => handleStatusChange("done")} className="rounded-lg cursor-pointer">
-                    <CheckCircle2 className="mr-2 h-4 w-4 text-emerald-500" /> Done
+                    <CheckCircle2 className="mr-2 h-4 w-4 text-emerald-500" /> Terminé
                   </DropdownMenuItem>
                 )}
 
@@ -142,7 +142,7 @@ export function TaskCard({ task, onEdit }: TaskCardProps) {
                   onClick={() => setShowDeleteAlert(true)} 
                   className="rounded-lg cursor-pointer text-destructive focus:bg-destructive/10 focus:text-destructive"
                 >
-                  <Trash2 className="mr-2 h-4 w-4" /> Delete
+                  <Trash2 className="mr-2 h-4 w-4" /> Supprimer
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -168,18 +168,18 @@ export function TaskCard({ task, onEdit }: TaskCardProps) {
       <AlertDialog open={showDeleteAlert} onOpenChange={setShowDeleteAlert}>
         <AlertDialogContent className="rounded-2xl border-border/50">
           <AlertDialogHeader>
-            <AlertDialogTitle className="font-display text-xl">Delete Task</AlertDialogTitle>
+            <AlertDialogTitle className="font-display text-xl">Supprimer la tâche</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to delete "{task.title}"? This action cannot be undone.
+              Êtes-vous sûr de vouloir supprimer "{task.title}" ? Cette action est irréversible.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="rounded-xl">Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="rounded-xl">Annuler</AlertDialogCancel>
             <AlertDialogAction 
               onClick={handleDelete}
               className="rounded-xl bg-destructive text-destructive-foreground hover:bg-destructive/90"
             >
-              Delete
+              Supprimer
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

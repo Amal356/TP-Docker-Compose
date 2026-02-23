@@ -11,10 +11,17 @@ L'application est divisée en 3 services principaux :
 
 Les réseaux sont segmentés (`frontend-net` et `backend-net`) pour garantir qu'aucune communication directe n'est possible entre le frontend et la base de données (principe de moindre privilège).
 
-## Prérequis
+## Configuration de la Base de Données (Locale)
 
-- Docker
-- Docker Compose
+Si vous souhaitez utiliser une base de données PostgreSQL installée directement sur votre machine (hors Docker) :
+
+1. Identifiez l'adresse IP de votre machine sur votre réseau local (ex: `192.168.1.XX`).
+2. Assurez-vous que PostgreSQL accepte les connexions externes (vérifiez `pg_hba.conf` et `postgresql.conf`).
+3. Créez un fichier `.env` :
+   ```env
+   DATABASE_URL=postgres://votre_utilisateur:votre_password@192.168.1.XX:5432/nom_de_votre_db
+   ```
+4. Le conteneur backend utilisera cette variable pour se connecter à votre PC.
 
 ## Lancement de l'application
 

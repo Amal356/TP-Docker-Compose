@@ -1,6 +1,12 @@
+# Ce fichier est configuré pour un usage étudiant flexible.
+# Vous pouvez soit utiliser le service 'database' inclus ci-dessous,
+# soit connecter votre propre base de données locale (PC) en modifiant 
+# la variable DATABASE_URL dans le fichier .env (voir README.md).
+
 version: '3.8'
 
 services:
+  # Service de base de données (optionnel si vous utilisez celle de votre PC)
   database:
     image: postgres:15-alpine
     container_name: task_db
@@ -31,14 +37,14 @@ services:
       dockerfile: Dockerfile.backend
     container_name: task_backend
     environment:
-      - DATABASE_URL=postgres://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@database:5432/${DB_NAME:-taskmanager}
+      - DATABASE_URL=${DATABASE_URL:-postgres://postgres:postgres@database:5432/taskmanager}
       - PORT=5000
-    depends_on:
-      database:
-        condition: service_healthy
+    # On laisse database en option, le backend attendra qu'elle soit prête si elle est utilisée
     networks:
       - frontend-net
       - backend-net
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     deploy:
       resources:
         limits:

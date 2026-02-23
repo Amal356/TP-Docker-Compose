@@ -82,12 +82,12 @@ export function TaskForm({ open, onOpenChange, task, defaultStatus = "todo" }: T
       <DialogContent className="sm:max-w-[425px] border-border/50 shadow-xl rounded-2xl">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold font-display">
-            {isEditing ? "Edit Task" : "Create New Task"}
+            {isEditing ? "Modifier la Tâche" : "Nouvelle Tâche"}
           </DialogTitle>
           <DialogDescription>
             {isEditing 
-              ? "Update the details of your task below." 
-              : "Fill in the details to add a new task to your board."}
+              ? "Mettez à jour les détails de votre tâche ci-dessous." 
+              : "Remplissez les détails pour ajouter une nouvelle tâche à votre tableau."}
           </DialogDescription>
         </DialogHeader>
 
@@ -98,10 +98,10 @@ export function TaskForm({ open, onOpenChange, task, defaultStatus = "todo" }: T
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold">Title</FormLabel>
+                  <FormLabel className="font-semibold">Titre</FormLabel>
                   <FormControl>
                     <Input 
-                      placeholder="e.g. Design Landing Page" 
+                      placeholder="ex: Conception de la page d'accueil" 
                       className="rounded-xl px-4 py-6 bg-muted/30 border-muted focus-visible:ring-primary/20" 
                       {...field} 
                     />
@@ -116,10 +116,10 @@ export function TaskForm({ open, onOpenChange, task, defaultStatus = "todo" }: T
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold">Description (Optional)</FormLabel>
+                  <FormLabel className="font-semibold">Description (Optionnelle)</FormLabel>
                   <FormControl>
                     <Textarea 
-                      placeholder="Add more details about this task..." 
+                      placeholder="Ajoutez plus de détails sur cette tâche..." 
                       className="rounded-xl resize-none bg-muted/30 border-muted min-h-[100px] p-4 focus-visible:ring-primary/20" 
                       {...field} 
                       value={field.value || ""}
@@ -135,17 +135,17 @@ export function TaskForm({ open, onOpenChange, task, defaultStatus = "todo" }: T
               name="status"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold">Status</FormLabel>
+                  <FormLabel className="font-semibold">Statut</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger className="rounded-xl px-4 py-6 bg-muted/30 border-muted focus:ring-primary/20">
-                        <SelectValue placeholder="Select a status" />
+                        <SelectValue placeholder="Sélectionnez un statut" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent className="rounded-xl">
-                      <SelectItem value="todo" className="rounded-lg my-1">To Do</SelectItem>
-                      <SelectItem value="in_progress" className="rounded-lg my-1">In Progress</SelectItem>
-                      <SelectItem value="done" className="rounded-lg my-1">Done</SelectItem>
+                      <SelectItem value="todo" className="rounded-lg my-1">À faire</SelectItem>
+                      <SelectItem value="in_progress" className="rounded-lg my-1">En cours</SelectItem>
+                      <SelectItem value="done" className="rounded-lg my-1">Terminé</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -160,7 +160,7 @@ export function TaskForm({ open, onOpenChange, task, defaultStatus = "todo" }: T
                 onClick={() => onOpenChange(false)}
                 className="rounded-xl font-medium"
               >
-                Cancel
+                Annuler
               </Button>
               <Button 
                 type="submit" 
@@ -168,7 +168,7 @@ export function TaskForm({ open, onOpenChange, task, defaultStatus = "todo" }: T
                 className="rounded-xl font-medium px-6 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20"
               >
                 {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                {isEditing ? "Save Changes" : "Create Task"}
+                {isEditing ? "Enregistrer" : "Créer la Tâche"}
               </Button>
             </DialogFooter>
           </form>
