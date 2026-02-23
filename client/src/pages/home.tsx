@@ -61,9 +61,6 @@ export default function Home() {
           <h1 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-foreground">
             Gestionnaire de <span className="text-primary">Tâches</span>
           </h1>
-          <p className="text-muted-foreground mt-2 text-lg">
-            TP de Gestion de Projet - Travail Étudiant
-          </p>
         </div>
         
         <Button 

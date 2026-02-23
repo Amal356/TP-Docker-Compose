@@ -11,17 +11,39 @@ L'application est divisée en 3 services principaux :
 
 Les réseaux sont segmentés (`frontend-net` et `backend-net`) pour garantir qu'aucune communication directe n'est possible entre le frontend et la base de données (principe de moindre privilège).
 
-## Configuration de la Base de Données (Locale)
+## Guide de Configuration de la Base de Données (Locale sur PC)
 
-Si vous souhaitez utiliser une base de données PostgreSQL installée directement sur votre machine (hors Docker) :
+Pour utiliser votre propre base de données PostgreSQL installée sur votre PC avec Docker :
 
-1. Identifiez l'adresse IP de votre machine sur votre réseau local (ex: `192.168.1.XX`).
-2. Assurez-vous que PostgreSQL accepte les connexions externes (vérifiez `pg_hba.conf` et `postgresql.conf`).
-3. Créez un fichier `.env` :
-   ```env
-   DATABASE_URL=postgres://votre_utilisateur:votre_password@192.168.1.XX:5432/nom_de_votre_db
-   ```
-4. Le conteneur backend utilisera cette variable pour se connecter à votre PC.
+### 1. Préparation de PostgreSQL sur votre PC
+- Ouvrez votre outil de gestion PostgreSQL (ex: pgAdmin ou psql).
+- Créez une base de données nommée `taskmanager`.
+- Assurez-vous que l'utilisateur `postgres` a un mot de passe (ex: `votre_password`).
+
+### 2. Autoriser les connexions externes
+Par défaut, PostgreSQL bloque les connexions venant de Docker. 
+- Trouvez votre fichier `pg_hba.conf` (souvent dans le dossier Data de PostgreSQL).
+- Ajoutez cette ligne à la fin : `host all all 0.0.0.0/0 md5`
+- Dans `postgresql.conf`, assurez-vous que `listen_addresses = '*'` est activé.
+- Redémarrez le service PostgreSQL.
+
+### 3. Récupérer votre adresse IP locale
+- Sur Windows : Tapez `ipconfig` dans un terminal et cherchez "Adresse IPv4" (ex: `192.168.1.15`).
+- Sur Mac/Linux : Tapez `ifconfig` ou `ip addr`.
+
+### 4. Configurer le projet
+- Créez un fichier nommé `.env` à la racine du projet.
+- Ajoutez la ligne suivante en remplaçant par vos infos :
+  ```env
+  DATABASE_URL=postgres://postgres:votre_password@192.168.1.15:5432/taskmanager
+  ```
+  *(Note : Sur Docker Desktop pour Windows/Mac, vous pouvez aussi essayer `host.docker.internal` au lieu de l'IP).*
+
+### 5. Lancement
+```bash
+docker-compose up -d --build
+```
+Le backend se connectera désormais directement à votre base de données locale.
 
 ## Lancement de l'application
 
